@@ -196,18 +196,17 @@ select * from c where c.pk = "XK1123" and c.doctype in ("order", "lineitem")
 
 ## CosmosDB - other interesting features
 
-- Synapse Link (described later)
-- Change-Feed, Azure Functions
-- GeoSpatial queries
-- Autoscale
-- Our CosmosDB SDKs include DotNet, Java, Node.js, Python
-- Server-Side Programming
+- **Synapse Link** (described shortly)
+- **Change-Feed** & Azure Functions
+- **GeoSpatial queries**
+- **Autoscale**
+- Our CosmosDB **SDKs** include DotNet, Java, Node.js, Python
+- **Server-Side Programming**
   - Stored Procedures - transactional within a partition key
   - UDFs - extend the SQL language
   - Triggers - they don't work as you might expect
 - TTL
 - Five Consistency Levels for Multi-Region; from Strong to Eventual
-- Serverless (in Preview)
 
 <p align="center" width="95%">
   <img src="img/spacer-500.png">
@@ -217,6 +216,20 @@ select * from c where c.pk = "XK1123" and c.doctype in ("order", "lineitem")
 
 <p align="center" width="95%">
   <img src="img/azure-iot-cosmosdb-synapse.png">
+</p>
+
+<p align="center" width="95%">
+  <img src="img/spacer-500.png">
+</p>
+
+---
+
+## Azure Synapse Link
+
+[Azure Synapse Link](https://docs.microsoft.com/en-us/azure/cosmos-db/synapse-link) 
+
+<p align="center" width="95%">
+  <img src="img/synapse-analytics-cosmos-db-architecture.png">
 </p>
 
 <p align="center" width="95%">
@@ -260,20 +273,6 @@ select * from c where c.pk = "XK1123" and c.doctype in ("order", "lineitem")
     "_ts": 1603814841
 }
 ```
-
-<p align="center" width="95%">
-  <img src="img/spacer-500.png">
-</p>
-
----
-
-## Azure Synapse Link
-
-[Azure Synapse Link](https://docs.microsoft.com/en-us/azure/cosmos-db/synapse-link) 
-
-<p align="center" width="95%">
-  <img src="img/synapse-analytics-cosmos-db-architecture.png">
-</p>
 
 <p align="center" width="95%">
   <img src="img/spacer-500.png">
