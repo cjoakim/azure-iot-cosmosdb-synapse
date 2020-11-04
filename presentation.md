@@ -345,19 +345,6 @@ root
 - https://docs.microsoft.com/en-us/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet&preserve-view=true
 - [microsoft.azure.cosmos SDK](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos?view=azure-dotnet)
 
-Fri 10/30 EOD:
-- https://github.com/Azure/azure-cosmos-dotnet-v3/tree/master/Microsoft.Azure.Cosmos.Samples/Usage
-
-- https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions?view=azure-dotnet
-
-CosmosClientOptions.ApplicationPreferredRegions Property
-CosmosClientOptions.ConnectionMode Property
-new CosmosClientOptions
-{
-    ConnectionMode = ConnectionMode.Gateway // ConnectionMode.Direct is the default
-});
-https://docs.microsoft.com/en-us/azure/cosmos-db/sql-sdk-connection-modes
-
 
 #### Code Samples
 
