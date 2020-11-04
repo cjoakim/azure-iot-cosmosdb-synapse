@@ -414,3 +414,106 @@ FROM
 #### Python Code Samples
 
 See the **py_device1** directory in this repo (IoT SDK)
+
+---
+
+## Deploying this Solution to Your Subscription
+
+The **az** directory in this repository contains **bash** shell scripts that can be used
+to provision the necessary Azure PaaS services in your subscription.
+These bash scripts are intended for linux, macOS, or WSL within Windows 10.
+
+Alternatively, the **az** (Azure Command Line Interface program) commands within these 
+bash scripts can also be executed within Windows PowerShell, as the az syntax is the
+same across platforms.
+
+## Edit the az/provisioning_env.sh script
+
+In this script you define the names of your resources, resource groups, their regions, etc.
+For example, these first few lines define the subscription I'll use, the userID, and the
+default Azure Region and Resource Group for the provisioned resources.
+
+```
+export subscription=$AZURE_SUBSCRIPTION_ID
+export user=$USER
+export primary_region="eastus"
+export primary_rg="cjoakim-iot-e2e"
+```
+
+Edit the remainder of the file per your desired configuration.
+
+## Execute the az scripts
+
+See the comments at the top of each of the following scripts.
+
+```
+$ cd az
+
+$ mkdir out
+
+# Install az CLI exensions
+$ ./extensions.sh install
+$ ./extensions.sh list
+
+# Create Azure Storage Account
+$ ./storage.sh create
+$ ./storage.sh info
+
+# Create Azure Stream Analytics Job
+$ ./stream_analytics.sh create
+
+# Create Azure CosmosDB Account
+$ ./cosmos_sql.sh create
+$ ./cosmos_sql.sh info
+
+# Create Azure IoT Hub Account - a multi-step process
+$ ./iothub.sh create
+$ ./iothub.sh link_dps_to_hub    <--  requires environment variables from the create step
+$ ./iothub.sh info
+$ ./iothub.sh register_device1
+$ ./iothub.sh register_device2
+```
+
+### Environment Variables
+
+The code in this repository uses the following Environment Variables.
+These should be set on your system with **your** values.
+
+```
+AZURE_SUBSCRIPTION_ID
+
+AZURE_IOT_COSMOSDB_SQLDB_ACCT
+AZURE_IOT_COSMOSDB_SQLDB_DBNAME
+AZURE_IOT_COSMOSDB_SQLDB_COLLNAME
+AZURE_IOT_COSMOSDB_SQLDB_URI
+AZURE_IOT_COSMOSDB_SQLDB_KEY
+AZURE_IOT_COSMOSDB_SQLDB_CONN_STRING
+
+AZURE_IOTHUB_NAME
+AZURE_IOTHUB_RESOURCE_ID
+AZURE_IOTHUB_CONN_STR
+AZURE_IOTHUB_DEVICE1_NAME
+AZURE_IOTHUB_DEVICE1_CONN_STR
+AZURE_IOTHUB_DEVICE2_NAME
+AZURE_IOTHUB_DEVICE2_CONN_STR
+```
+
+There is a Node.js program in this directory that you may find useful 
+to parse the provisioning output files in the out/ directory and extract
+the values for the above environment variables.  If so, run:
+
+```
+$ npm install
+$ npm test
+```
+
+### DotCore projects 
+
+In click the *..csproj files to open Visual Studio.
+
+Alternatively, from the CLI, run:
+
+```
+$ dotnet build
+$ dotnet run
+```

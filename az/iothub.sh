@@ -201,14 +201,3 @@ fi
 if [ $processed -eq 0 ]; then display_usage; fi
 
 echo 'done'
-
-# $ ./iothub.sh info
-# dps list in rg: cjoakim-iot-e2e
-# az iot dps linked-hub list: cjoakimiotiothubdps
-# properties.eventHubEndpoints.events.endpoint for iothub cjoakimiotiothub
-# "sb://iothub-ns-cjoakimiot-5475481-90131563ac.servicebus.windows.net/"
-# properties.eventHubEndpoints.events.path for iothub cjoakimiotiothub
-# "cjoakimiotiothub"
-# service policy primaryKey for iothub cjoakimiotiothub
-# "1Y2jdOZyXZ5AH2flsuE9J6I0iT4LIK8x39IlUgqsNTI="
-# done
