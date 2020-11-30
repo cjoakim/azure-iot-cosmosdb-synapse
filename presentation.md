@@ -517,3 +517,11 @@ Alternatively, from the CLI, run:
 $ dotnet build
 $ dotnet run
 ```
+
+--- 
+
+## Links
+
+- https://docs.microsoft.com/en-us/azure/cosmos-db/configure-synapse-link#analyze-with-powerbi
+- https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/tutorial-connect-power-bi-desktop
+- https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/get-started-azure-data-studio
