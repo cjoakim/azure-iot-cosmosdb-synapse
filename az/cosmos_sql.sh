@@ -78,9 +78,8 @@ create_collections() {
         --subscription $subscription \
         --partition-key-path $cosmos_sql_events_pk \
         --throughput $cosmos_sql_events_ru \
+        --analytical-storage-ttl 31536000 \
         > out/cosmos_sql_db_create_events.json
-
-    # --ttl 604800    (optional, in seconds, 60 * 60 * 24 * 7 = 604800, or 1-week )
 }
 
 info() {
