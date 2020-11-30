@@ -6,8 +6,8 @@
 # See https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
 
 # az login
-# az account set -s $AZURE_SUBSCRIPTION_ID
-# az account show  (confirm that your expected Azure Subscription is shown)
+az account set -s $AZURE_SUBSCRIPTION_ID
+az account show  (confirm that your expected Azure Subscription is shown)
 
 source ./provisioning_env.sh
 sleep_seconds=60
@@ -40,5 +40,16 @@ sleep $sleep_seconds
 sleep $sleep_seconds
 
 ./synapse.sh info
+
+# Then, run these steps manually:
+# Set environment variable AZURE_IOTHUB_CONN_STR
+# ./iothub.sh link_dps_to_hub
+# ./iothub.sh info
+
+# Then, register two devices:
+# ./iothub.sh register_device1
+# ./iothub.sh register_device2
+# Set AZURE_IOTHUB_DEVICE1_CONN_STR per connection string value in Azure Portal
+# Set AZURE_IOTHUB_DEVICE2_CONN_STR per connection string value in Azure Portal
 
 echo 'done'
