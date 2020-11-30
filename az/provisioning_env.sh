@@ -19,7 +19,7 @@ export cosmos_sql_acct_kind="GlobalDocumentDB"  # {GlobalDocumentDB, MongoDB, Pa
 export cosmos_sql_dbname="dev"
 export cosmos_sql_events_collname="events"
 export cosmos_sql_events_pk="/pk"
-export cosmos_sql_events_ru="500"
+export cosmos_sql_events_ru="1000"
 #
 export iothub_region=$primary_region
 export iothub_rg=$primary_rg
