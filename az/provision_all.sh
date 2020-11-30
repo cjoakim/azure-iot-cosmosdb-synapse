@@ -10,18 +10,35 @@
 # az account show  (confirm that your expected Azure Subscription is shown)
 
 source ./provisioning_env.sh
+sleep_seconds=60
 
 ./extensions.sh install
 ./extensions.sh list
 
-./storage.sh create 
-
 ./cosmos_sql.sh create
+sleep $sleep_seconds
+./cosmos_sql.sh info
 
 ./iothub.sh create
+sleep $sleep_seconds
+./iothub.sh info
 
 ./stream_analytics.sh create
+sleep $sleep_seconds
 
-./synapse.sh create pause create_spark_pool pause create_sql_pool pause info
+./synapse.sh create 
+sleep $sleep_seconds
+./synapse.sh info
+sleep $sleep_seconds
+
+./synapse.sh create_spark_pool
+sleep $sleep_seconds
+./synapse.sh info
+sleep $sleep_seconds
+
+./synapse.sh create_sql_pool
+sleep $sleep_seconds
+
+./synapse.sh info
 
 echo 'done'

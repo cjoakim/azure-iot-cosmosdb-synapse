@@ -43,16 +43,6 @@ create() {
         --subscription $subscription \
         > out/synapse_storage_acct_create.json
 
-    # echo 'creating synapse storage (ADL V2) acct: '$synapse_name
-    # az storage account create \
-    #     --name $synapse_name \
-    #     --resource-group $synapse_rg \
-    #     --location $synapse_region \
-    #     --sku $synapse_stor_sku \
-    #     --kind StorageV2 \
-    #     --hierarchical-namespace true \
-    #     > out/synapse_storage_acct_create.json
-
     pause
 
     storage_name=$synapse_name
@@ -61,11 +51,12 @@ create() {
     az synapse workspace create \
         --name $synapse_name \
         --resource-group $synapse_rg \
-        --storage-account $storage_name \
+        --storage-account $synapse_name \
         --file-system $synapse_fs_name \
-        --sql-admin-login-user $synapse_admin_user \
-        --sql-admin-login-password $synapse_admin_pass \
+        --sql-admin-login-user $AZURE_SYNAPSE_USER \
+        --sql-admin-login-password $AZURE_SYNAPSE_PASS \
         --location $synapse_region \
+        --debug \
         > out/synapse_workspace_create.json
 
     pause

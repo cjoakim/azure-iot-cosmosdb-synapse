@@ -2,14 +2,14 @@
 
 # Bash shell that defines parameters and environment variables used in provisioning the
 # resources in this IoT project, and is "sourced" by the other scripts in this project.
-# Chris Joakim, Microsoft, 2020/10/27
+# Chris Joakim, Microsoft, 2020/11/30
 
 # environment variables for provisioning:
 
 export subscription=$AZURE_SUBSCRIPTION_ID
 export user=$USER
 export primary_region="eastus"
-export primary_rg="cjoakim-iot-e2e"
+export primary_rg="cjoakim-iot-cosmosdb-synapse"
 #
 export cosmos_sql_region=$primary_region
 export cosmos_sql_rg=$primary_rg
@@ -67,8 +67,8 @@ export synapse_name="cjoakimiotsynapse"
 export synapse_stor_kind="StorageV2"       # {BlobStorage, BlockBlobStorage, FileStorage, Storage, StorageV2}]
 export synapse_stor_sku="Standard_LRS"     # {Premium_LRS, Premium_ZRS, Standard_GRS, Standard_GZRS, , Standard_RAGRS, Standard_RAGZRS, Standard_ZRS]
 export synapse_stor_access_tier="Hot"      # Cool, Hot
-export synapse_admin_user="cjoakim"
-export synapse_admin_pass="xxxxxx"
+export synapse_admin_user=$AZURE_SYNAPSE_USER   # Use the system environment variable
+export synapse_admin_pass=$AZURE_SYNAPSE_PASS   # Use the system environment variable
 export synapse_fs_name="synapse_acct"
 export synapse_sql_pool_name="cjdw200"
 export synapse_sql_pool_perf="DW200c" 
