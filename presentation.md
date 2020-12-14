@@ -337,6 +337,8 @@ recent_df = df.select("pk","line_speed","temperature","humidity", "epoch").filte
 display(recent_df.limit(10))
 ```
 
+### Screen-Shot of a PySpark Notebook in Azure Synapse
+
 <p align="center" width="95%">
   <img src="img/pyspark-notebook-example.png">
 </p>
