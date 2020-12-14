@@ -335,9 +335,7 @@ root
 from pyspark.sql import functions as f
 recent_df = df.select("pk","line_speed","temperature","humidity", "epoch").filter("epoch >= 1603986247").sort("epoch", ascending=False) 
 display(recent_df.limit(10))
-
 ```
-
 
 <p align="center" width="95%">
   <img src="img/pyspark-notebook-example.png">
