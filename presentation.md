@@ -294,6 +294,12 @@ df = spark.read\
     .option("spark.cosmos.container", "events")\
     .load()
 
+display(df.limit(10))
+
+---
+
+# Display the observed schema of the analytical store
+
 display(df.printSchema())
 
 root
@@ -321,7 +327,21 @@ root
  |-- pk: string (nullable = true)
  |-- id: string (nullable = true)
  |-- _etag: string (nullable = true)
+
+---
+
+# Produce and display a filtered DataFrame with just the pertinent IoT columns, sorted by epoch time
+
+from pyspark.sql import functions as f
+recent_df = df.select("pk","line_speed","temperature","humidity", "epoch").filter("epoch >= 1603986247").sort("epoch", ascending=False) 
+display(recent_df.limit(10))
+
 ```
+
+
+<p align="center" width="95%">
+  <img src="img/pyspark-notebook-example.png">
+</p>
 
 <p align="center" width="95%">
   <img src="img/spacer-500.png">
