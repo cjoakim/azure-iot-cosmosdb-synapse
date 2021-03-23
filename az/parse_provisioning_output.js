@@ -45,7 +45,7 @@ class Main {
 
         this.wrangle_cosmos();
         this.wrangle_iothub();
-        this.wrangle_storage();
+        //this.wrangle_storage();
 
         this.add_env_line('');
         this.write_env_file();
