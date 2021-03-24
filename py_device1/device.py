@@ -24,11 +24,13 @@ from azure.iot.device import Message
 # Usage:
 #   dotnet run <message-count> <sleep-milliseconds>
 #
-# Chris Joakim, Microsoft, 2020/10/26
+# Chris Joakim, Microsoft, 2021/03/24
 
 async def main(count, sleep_milliseconds):
   conn_str = os.getenv("AZURE_IOTHUB_DEVICE1_CONN_STR")
   device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)
+
+  start_epoch = time.time()
 
   await device_client.connect()
 
@@ -37,6 +39,10 @@ async def main(count, sleep_milliseconds):
     time.sleep(float(sleep_milliseconds) / 1000.0)
 
   await device_client.disconnect()
+
+  print('start_epoch was: {}'.format(start_epoch))
+  print('select * from c where c.epoch >= {} order by c.epoch desc'.format(start_epoch))
+  print('select c.pk, c.line_speed, c.temperature, c.humidity, c.epoch from c where c.epoch >= {} order by c.epoch desc'.format(start_epoch))
 
 def simulated_telemetry_data(i):
   msg_data = dict()
