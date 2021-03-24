@@ -43,6 +43,8 @@ async def main(count, sleep_milliseconds):
   print('start_epoch was: {}'.format(start_epoch))
   print('select * from c where c.epoch >= {} order by c.epoch desc'.format(start_epoch))
   print('select c.pk, c.line_speed, c.temperature, c.humidity, c.epoch from c where c.epoch >= {} order by c.epoch desc'.format(start_epoch))
+  # https://docs.microsoft.com/en-us/azure/cosmos-db/synapse-link
+  # https://docs.microsoft.com/en-us/azure/cosmos-db/sql-query-getting-started
 
 def simulated_telemetry_data(i):
   msg_data = dict()
