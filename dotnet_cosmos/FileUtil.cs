@@ -62,7 +62,10 @@
                     foreach (var a in rows)
                     {
                         a.postParse();
-                        airports.Add(a);
+                        if (a.IsValid())
+                        {
+                            airports.Add(a);
+                        }
                     }
                 }
             }

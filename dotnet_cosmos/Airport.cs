@@ -66,30 +66,47 @@ namespace CJoakim.Cosmos
         {
             try {
                 if (Math.Abs(AirportId) < 1) {
+                    //Console.WriteLine("Invalid Airport - AirportId)");
                     return false;
                 }
                 if (String.IsNullOrEmpty(Name)) {
+                    //Console.WriteLine("Invalid Airport - Name)");
                     return false;
                 }
                 if (String.IsNullOrEmpty(City)) {
+                    //Console.WriteLine("Invalid Airport - City)");
                     return false;
                 }
                 if (String.IsNullOrEmpty(Country)) {
+                    //Console.WriteLine("Invalid Airport - Country)");
                     return false;
                 }
                 if (String.IsNullOrEmpty(IataCode)) {
+                    //Console.WriteLine("Invalid Airport - IataCode)");
                     return false;
                 }
                 if (String.IsNullOrEmpty(TimezoneCode)) {
+                    //Console.WriteLine("Invalid Airport - TimezoneCode)");
                     return false;
                 }
                 if (Math.Abs(Latitude) < 0.00001) {
+                    //Console.WriteLine("Invalid Airport - Latitude)");
                     return false;
                 }
                 if (Math.Abs(Longitude) < 0.00001) {
+                    //Console.WriteLine("Invalid Airport - Longitude)");
+                    return false;
+                }
+                if (Math.Abs(Latitude) > 179.99) {
+                    //Console.WriteLine("Invalid Airport - Latitude)");
+                    return false;
+                }
+                if (Math.Abs(Longitude) > 179.99) {
+                    //Console.WriteLine("Invalid Airport - Longitude)");
                     return false;
                 }
                 if ((Altitude < -600) || (Altitude > 10000)) {
+                    //Console.WriteLine("Invalid Airport - Altitude)");
                     return false;
                 }
             }

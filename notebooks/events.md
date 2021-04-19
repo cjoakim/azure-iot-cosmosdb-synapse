@@ -10,12 +10,9 @@ for easy copy-and-paste into your Notebook.
 ### Code
 
 ```
-# Read from Cosmos DB analytical store into a Spark DataFrame and display 10 rows from the DataFrame
-# To select a preferred list of regions in a multi-region Cosmos DB account, add .option("spark.cosmos.preferredRegions", "<Region1>,<Region2>")
-
 df = spark.read\
     .format("cosmos.olap")\
-    .option("spark.synapse.linkedService", "CosmosDev")\
+    .option("spark.synapse.linkedService", "cjoakimiotcosmossql_dev")\
     .option("spark.cosmos.container", "events")\
     .load()
 
@@ -23,6 +20,8 @@ df.printSchema()
 ```
 
 ### Output
+
+#### IoT Events
 
 ```
 root
@@ -52,6 +51,33 @@ root
  |-- _etag: string (nullable = true)
 ```
 
+#### Airport Events
+
+```
+root
+ |-- _rid: string (nullable = true)
+ |-- _ts: long (nullable = true)
+ |-- id: string (nullable = true)
+ |-- pk: string (nullable = true)
+ |-- AirportId: long (nullable = true)
+ |-- Name: string (nullable = true)
+ |-- City: string (nullable = true)
+ |-- Country: string (nullable = true)
+ |-- IataCode: string (nullable = true)
+ |-- IcaoCode: string (nullable = true)
+ |-- Latitude: double (nullable = true)
+ |-- Longitude: double (nullable = true)
+ |-- location: struct (nullable = true)
+ |    |-- type: string (nullable = true)
+ |    |-- coordinates: array (nullable = true)
+ |    |    |-- element: double (containsNull = true)
+ |-- Altitude: long (nullable = true)
+ |-- TimezoneNum: double (nullable = true)
+ |-- Dst: string (nullable = true)
+ |-- TimezoneCode: string (nullable = true)
+ |-- _etag: string (nullable = true)
+```
+
 ---
 
 ## Cell 2
@@ -68,9 +94,29 @@ display(df.limit(100))
 
 ### Code
 
+#### Implementation with simulated IoT events:
+
 ```
 from pyspark.sql import functions as f
 
 recent_df = df.select("pk","line_speed","temperature","humidity", "epoch").filter("epoch >= 1603986247").sort("epoch", ascending=False) 
 display(recent_df.limit(10))
+```
+
+#### Alternative implementation with Airport events:
+
+```
+from pyspark.sql import functions as f
+
+recent_df = df.select("pk","City","Country","Name", "_ts")\
+    .filter("_ts >= 1618846698 and Country = 'Belgium'")\
+    .sort("_ts", ascending=False) 
+
+display(recent_df.limit(10))
+```
+
+Corresponding CosmosDB SQL Query:
+
+```
+select c.pk, c.City, c.Country, c.Name from c where c.Country = 'Belgium' and c._ts > 1618846698
 ```

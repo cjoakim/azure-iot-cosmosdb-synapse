@@ -13,7 +13,7 @@ namespace CJoakim.Cosmos
         public AirportMap()
         {
             // AirportId,Name,City,Country,IataCode,IcaoCode,Latitude,Longitude,Altitude,TimezoneNum,Dst,TimezoneCode 
-            Map(m => m.id).Name("AirportId");
+            Map(m => m.AirportId).Name("AirportId");
             Map(m => m.Name).Name("Name");
             Map(m => m.City).Name("City");
             Map(m => m.Country).Name("Country");

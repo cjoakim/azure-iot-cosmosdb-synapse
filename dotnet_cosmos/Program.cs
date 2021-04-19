@@ -127,14 +127,17 @@ namespace CJoakim.Cosmos
             {
                 if (i < maxCount) {
                     Airport a = airports[i];
+                    log("===");
                     Console.WriteLine(a.ToJson());
                     ItemResponse<Airport> response = await cu.upsertAirportDocument(a);
+                    log("---");
                     log($"status code:    {response.StatusCode}");
                     log($"request charge: {response.RequestCharge}");
-                    log($"diagnostics:    {response.Diagnostics}");
-                    log($"resource:       {response.Resource}");
+                    //log($"diagnostics:    {response.Diagnostics}");
+                    //log($"resource:       {response.Resource}");
                 }
             }
+            log($"airports read from csv file: {airports.Count}");
             return;
         }
 
