@@ -76,6 +76,7 @@ root
  |-- Dst: string (nullable = true)
  |-- TimezoneCode: string (nullable = true)
  |-- _etag: string (nullable = true)
+ |-- Epoch: long (nullable = true)
 ```
 
 ---
@@ -108,15 +109,32 @@ display(recent_df.limit(10))
 ```
 from pyspark.sql import functions as f
 
-recent_df = df.select("pk","City","Country","Name", "_ts")\
+belgian_df = df.select("_ts", "Epoch", "pk", "City", "Country", "Name")\
     .filter("_ts >= 1618846698 and Country = 'Belgium'")\
     .sort("_ts", ascending=False) 
 
-display(recent_df.limit(10))
+display(belgian_df.limit(10))
 ```
 
 Corresponding CosmosDB SQL Query:
 
 ```
-select c.pk, c.City, c.Country, c.Name from c where c.Country = 'Belgium' and c._ts > 1618846698
+select c._ts, c.Epoch, c.pk, c.City, c.Country, c.Name from c where c.Country = 'Belgium' and c._ts > 1618846698 order by c._ts desc
+```
+
+---
+
+## Cell 4
+
+### Code
+
+
+```
+from pyspark.sql import functions as f
+
+latest_df = df.select("_ts", "Epoch", "pk", "City", "Country", "Name")\
+    .filter("_ts >= 1618846698")\
+    .sort("_ts", ascending=False) 
+
+display(latest_df.limit(10))
 ```

@@ -26,7 +26,7 @@ namespace CJoakim.Cosmos
         public float  TimezoneNum { get; set; }
         public string Dst { get; set; }
         public string TimezoneCode { get; set; }
-
+        public long   Epoch { get; set; }
 
         public Airport()
         {
@@ -41,6 +41,7 @@ namespace CJoakim.Cosmos
             {
                 this.id = Guid.NewGuid().ToString();
             }
+            this.Epoch = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
         }
 
 
