@@ -10,7 +10,7 @@
     using Newtonsoft.Json;
 
     // Class FileUtil implements IO operations for local data files.
-    // Chris Joakim, Microsoft, 2020/10/29
+    // Chris Joakim, Microsoft, 2021/04/19
 
     public class FileUtil
     {
@@ -41,18 +41,23 @@
                 string infile = AbsolutePath("data/airports/openflights_airports.csv");
                 Console.WriteLine("ReadAirportsCsv: {0}", infile);
 
-                using (var reader = new StreamReader(infile))
-                using (var csv = new CsvReader(reader, CultureInfo.CurrentCulture))
+                // AirportId,Name,City,Country,IataCode,IcaoCode,Latitude,Longitude,Altitude,TimezoneNum,Dst,TimezoneCode
+                // 1,"Goroka","Goroka","Papua New Guinea","GKA","AYGA",-6.081689,145.391881,5282,10,"U","Pacific/Port_Moresby"
+                // 2,"Madang","Madang","Papua New Guinea","MAG","AYMD",-5.207083,145.7887,20,10,"U","Pacific/Port_Moresby"
+
+                var config = new CsvConfiguration(CultureInfo.InvariantCulture)
                 {
-                    csv.Configuration.HasHeaderRecord = true;
-                    csv.Configuration.HeaderValidated = null;
-                    csv.Configuration.MissingFieldFound = null;
-                    csv.Configuration.IgnoreBlankLines = true;
-                    csv.Configuration.IncludePrivateMembers = false;
-                    csv.Configuration.IgnoreReferences = true;
+                    HasHeaderRecord = true,
+                    HeaderValidated = null,
+                    MissingFieldFound = null,
+                    IgnoreBlankLines = true
+                };
 
+                using (var reader = new StreamReader(infile))
+                using (var csv = new CsvReader(reader, config))
+                {
+                    csv.Context.RegisterClassMap<AirportMap>();
                     var records = csv.GetRecords<Airport>();
-
                     IEnumerable<Airport> rows = csv.GetRecords<Airport>();
                     foreach (var a in rows)
                     {

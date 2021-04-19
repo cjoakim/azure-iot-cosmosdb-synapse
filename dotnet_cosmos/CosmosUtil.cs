@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 // This class implements all Azure CosmosDB functionality for this app.
 //
-// Chris Joakim, Microsoft, 2020/11/02
+// Chris Joakim, Microsoft, 2021/04/19
 
 namespace CJoakim.Cosmos
 {

@@ -5,7 +5,7 @@ using Microsoft.Azure.Cosmos;
 
 
 // Program entry point, invoked from the command-line.
-// Chris Joakim, Microsoft, 2020/11/02
+// Chris Joakim, Microsoft, 2021/04/19
 
 namespace CJoakim.Cosmos
 {
@@ -119,7 +119,7 @@ namespace CJoakim.Cosmos
 
             CosmosUtil cu = new CosmosUtil();
             string dbname = Environment.GetEnvironmentVariable("AZURE_IOT_COSMOSDB_SQLDB_DBNAME");
-            string cname  = "airports";
+            string cname  = Environment.GetEnvironmentVariable("AZURE_IOT_COSMOSDB_SQLDB_COLLNAME");
             await cu.setCurrentDatabase(dbname);
             await cu.setCurrentContainer(cname);
 
