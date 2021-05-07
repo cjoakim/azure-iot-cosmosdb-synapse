@@ -14,11 +14,12 @@
 # Agenda
 
 - Introduce CosmosDB and NoSQL
-- Show CosmosDB in Azure Portal
+- CosmosDB Physical Implementation
+- Discuss Design
 - Demonstrate a working IoT app with CosmosDB
 - Discuss related Azure PaaS services and CosmosDB integrations
-- Cover DotNet Core C# code to access CosmosDB
-- GitHub public repo takeaway for you to see the code and recreate the solution
+- Discuss and Demonstrate Synapse Link
+
 
 #### Chris Joakim, Azure Cosmos DB Global Black Belt @ Microsoft, chjoakim@microsoft.com
 
@@ -137,6 +138,7 @@
 - The **partition key** attribute **name** can't change once a container is created
 - Strive for **high cardinality** and **well distributed** partition key values
 - Strive to have most queries specify the partition key
+- Queries can be optimized with Indexing and Composite Indexes
 - Embedding vs Externalizing Data within Documents
 - **Let us help you with you first few designs/apps**
 
@@ -207,6 +209,13 @@ select * from c where c.pk = "XK1123" and c.doctype in ("order", "lineitem")
   - Triggers - they don't work as you might expect
 - TTL
 - Five Consistency Levels for Multi-Region; from Strong to Eventual
+
+## Interesting features in Preview 
+
+- Point In Time Restore (PITR)
+- Partial Document Updates
+- Integrated Cache
+
 
 <p align="center" width="95%">
   <img src="img/spacer-500.png">
