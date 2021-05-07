@@ -20,7 +20,7 @@
 - Cover DotNet Core C# code to access CosmosDB
 - GitHub public repo takeaway for you to see the code and recreate the solution
 
-## Chris Joakim, Azure Cosmos DB Global Black Belt @ Microsoft, chjoakim@microsoft.com
+### Chris Joakim, Azure Cosmos DB Global Black Belt @ Microsoft, chjoakim@microsoft.com
 
 <p align="center" width="95%">
   <img src="img/spacer-500.png">
