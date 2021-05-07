@@ -2,7 +2,7 @@
 
 # Bash shell that defines parameters and environment variables used in provisioning the
 # resources in this IoT project, and is "sourced" by the other scripts in this project.
-# Chris Joakim, Microsoft, 2020/11/30
+# Chris Joakim, Microsoft, 2021/05/07
 
 # environment variables for provisioning:
 

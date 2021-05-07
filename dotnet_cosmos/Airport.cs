@@ -44,7 +44,11 @@ namespace CJoakim.Cosmos
             this.Epoch = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
         }
 
-
+        public void UpdateEpoch()
+        {
+            this.Epoch = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
+        }
+        
         public bool IsInCountry(string[] countryList)
         {
             try

@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Bash script with AZ CLI to automate the creation of the resources for this project.
-# Chris Joakim, Microsoft, 2020/11/30
+# Chris Joakim, Microsoft, 2021/05/07
 #
 # See https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
 
 # az login
-az account set -s $AZURE_SUBSCRIPTION_ID
-az account show  (confirm that your expected Azure Subscription is shown)
+# az account set -s $AZURE_SUBSCRIPTION_ID
+# az account show  (confirm that your expected Azure Subscription is shown)
 
 source ./provisioning_env.sh
 sleep_seconds=60
@@ -36,8 +36,8 @@ sleep $sleep_seconds
 ./synapse.sh info
 sleep $sleep_seconds
 
-./synapse.sh create_sql_pool
-sleep $sleep_seconds
+# ./synapse.sh create_sql_pool
+# sleep $sleep_seconds
 
 ./synapse.sh info
 

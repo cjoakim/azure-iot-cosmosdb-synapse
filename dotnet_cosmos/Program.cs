@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Azure.Cosmos;
@@ -31,6 +32,7 @@ namespace CJoakim.Cosmos
                     string id = null;
                     int maxCount;
                     int limit;
+                    int pauseMs;
                     double lat;
                     double lng;
                     double meters;
@@ -41,7 +43,8 @@ namespace CJoakim.Cosmos
                     {
                         case "upsertAirports":
                             maxCount = Int32.Parse(programArgs[1]);
-                            await upsertAirports(maxCount);
+                            pauseMs  = Int32.Parse(programArgs[2]);
+                            await upsertAirports(maxCount, pauseMs);
                             break;
 
                         case "queryAirportsByPk":
@@ -109,9 +112,9 @@ namespace CJoakim.Cosmos
             await Task.Delay(10);
         }
 
-        static async Task upsertAirports(int maxCount)
+        static async Task upsertAirports(int maxCount, int pauseMs)
         {
-            log($"upsertAirports: {maxCount}");
+            log($"upsertAirports: {maxCount}  pauseMs: {pauseMs}");
 
             FileUtil fsu = new FileUtil();
             List<Airport> airports = new FileUtil().ReadAirportsCsv();
@@ -127,6 +130,7 @@ namespace CJoakim.Cosmos
             {
                 if (i < maxCount) {
                     Airport a = airports[i];
+                    a.UpdateEpoch();
                     log("===");
                     Console.WriteLine(a.ToJson());
                     ItemResponse<Airport> response = await cu.upsertAirportDocument(a);
@@ -135,6 +139,7 @@ namespace CJoakim.Cosmos
                     log($"request charge: {response.RequestCharge}");
                     //log($"diagnostics:    {response.Diagnostics}");
                     //log($"resource:       {response.Resource}");
+                    Thread.Sleep(pauseMs);
                 }
             }
             log($"airports read from csv file: {airports.Count}");
@@ -272,7 +277,7 @@ namespace CJoakim.Cosmos
         private static void displayUsage()
         {
             log("Usage:");
-            log("dotnet run upsertAirports <maxCount>");
+            log("dotnet run upsertAirports <maxCount> <pauseMs>");
             log("dotnet run queryAirportsByPk <pk>");
             log("dotnet run queryAirportsByPk TPA");
             log("dotnet run queryAirportsByPkId TPA c49d4114-f804-4db8-8628-647b45ac9f27");

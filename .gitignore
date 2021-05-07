@@ -9,7 +9,7 @@ az/bash_env_azure.sh
 az/node_modules/
 az/out/
 
-
+**/.idea/
 
 
 ## Ignore Visual Studio temporary files, build results, and
