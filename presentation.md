@@ -233,13 +233,20 @@ select * from c where c.pk = "XK1123" and c.doctype in ("order", "lineitem")
 
 ---
 
-## Azure Synapse Link
+## Azure Synapse Link & Azure Synapse
 
+- [What is Azure Synapse Analytics?](https://docs.microsoft.com/en-us/azure/synapse-analytics/overview-what-is)
 - [Azure Synapse Link](https://docs.microsoft.com/en-us/azure/cosmos-db/synapse-link) 
 - [Configure](https://docs.microsoft.com/en-us/azure/cosmos-db/configure-synapse-link)
 
 <p align="center" width="95%">
   <img src="img/synapse-analytics-cosmos-db-architecture.png">
+</p>
+
+---
+
+<p align="center" width="95%">
+  <img src="img/synapse-architecture.png">
 </p>
 
 <p align="center" width="95%">
