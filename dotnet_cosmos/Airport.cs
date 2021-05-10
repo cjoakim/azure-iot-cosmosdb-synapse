@@ -35,18 +35,38 @@ namespace CJoakim.Cosmos
 
         public void postParse()
         {
-            pk = IataCode;
+            this.pk = IataCode;
             this.location = new Location(this.Latitude, this.Longitude);
             if (this.id == null)
             {
                 this.id = Guid.NewGuid().ToString();
             }
             this.Epoch = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
+
+
         }
 
         public void UpdateEpoch()
         {
             this.Epoch = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
+
+            //if (this.pk == "CLT")
+            //{
+            //    this.pk = "qclt";
+            //    this.Epoch = 9007199254740991; // Node.js
+            //} 
+
+            //if (this.pk == "BDL")
+            //{
+            //    this.pk = "qbdl";
+            //    this.Epoch = 9223372036854775807; // Java
+            //} 
+
+            //if (this.pk == "SEA")
+            //{
+            //    this.pk = "qsea";
+            //    this.Epoch = Int64.MaxValue; // DotNet, also 9223372036854775807
+            //} 
         }
         
         public bool IsInCountry(string[] countryList)
