@@ -30,7 +30,7 @@
 ---
 
 <p align="center" width="95%">
-  <img src="iimg/azure-cosmosdb-gray.png">
+  <img src="img/azure-cosmosdb-gray.png">
 </p>
 
 <p align="center" width="95%">
